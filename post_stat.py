@@ -138,13 +138,6 @@ def calculate_stats_from_tool_input(tool_name, tool_input):
 
         return additions, deletions, net_change
 
-    elif tool_name == 'NotebookEdit':
-        # NotebookEdit 工具：统计新源代码的行数
-        new_source = tool_input.get('new_source', '')
-        lines = count_lines(new_source)
-        # 简单起见，视为新增（可以后续优化）
-        return lines, 0, lines
-
     return 0, 0, 0
 
 
