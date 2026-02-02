@@ -99,11 +99,6 @@ additions = max(0, new_lines - old_lines)
 deletions = max(0, old_lines - new_lines)
 ```
 
-**NotebookEdit 工具**
-```python
-additions = count_lines(new_source)
-deletions = 0
-```
 
 ## 查看统计
 

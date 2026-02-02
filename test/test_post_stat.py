@@ -290,46 +290,7 @@ def main():
         print_error(f"执行失败: {stderr}")
         tests_failed += 1
 
-    # ========== 测试 4: NotebookEdit 工具 ==========
-    print_test(4, "NotebookEdit 工具 - 5 行代码")
-
-    test_data = {
-        "session_id": test_session_id,
-        "tool_input": {
-            "___TOOL_NAME___": "NotebookEdit",
-            "new_source": "import numpy as np\nimport pandas as pd\n\ndf = pd.DataFrame()\nprint(df)"
-        }
-    }
-
-    success, stdout, stderr = run_hook_test(test_data, "NotebookEdit 工具测试")
-
-    if success:
-        print(f"  标准错误输出:\n{stderr}")
-
-        records = read_last_stats_records(1)
-        if records:
-            expected = {
-                "tool": "NotebookEdit",
-                "additions": 5,
-                "deletions": 0,
-                "net_change": 5,
-                "session_id": test_session_id
-            }
-            verify_success, verify_msg = verify_stats_record(records[0], expected)
-            if verify_success:
-                print_success(f"NotebookEdit 工具测试通过: {verify_msg}")
-                tests_passed += 1
-            else:
-                print_error(f"NotebookEdit 工具测试失败: {verify_msg}")
-                tests_failed += 1
-        else:
-            print_error("未找到统计记录")
-            tests_failed += 1
-    else:
-        print_error(f"执行失败: {stderr}")
-        tests_failed += 1
-
-    # ========== 测试 5: 无变更 - 应该跳过记录 ==========
+    # ========== 测试 4: 无变更 - 应该跳过记录 ==========
     print_test(5, "无变更场景 - 应该跳过记录")
 
     test_data = {
